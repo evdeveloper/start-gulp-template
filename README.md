@@ -1,4 +1,4 @@
-# Start-Template-Gulp
+# Start-Gulp-Template
 
 Для старта шаблона нужно выполнить:
 1. git clone  

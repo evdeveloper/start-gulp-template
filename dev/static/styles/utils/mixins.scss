@@ -6,6 +6,20 @@
   }
 }
 
+@mixin scrollbars($size: var(--scroll-size), $foreground-color: var(--scroll-thumb), $background-color: var(--scroll-track)) {
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+  }
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+  scrollbar-color: $foreground-color $background-color;
+}
+
 @mixin center() {
   position: absolute;
   left: 50%;

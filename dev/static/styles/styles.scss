@@ -3,6 +3,11 @@
   --base-font-size: 16px;
   --white:#fff;
   --black:#000;
+  --gray:#D9D9D9;
+  --gray-text: #7E7E7E;
+  --scroll-thumb: var(--gray-text);
+  --scroll-track: var(--gray);
+  --scroll-size: 10px;
 
   // button settings
   --button-height: 30px;

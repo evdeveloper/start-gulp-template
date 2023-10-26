@@ -41,6 +41,7 @@ $.gulp.task('build', $.gulp.series(
 $.gulp.task('default', $.gulp.series(
     'dev',
     $.gulp.parallel(
+        'hash',
         'watch',
         'serve'
     )

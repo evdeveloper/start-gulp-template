@@ -1,8 +1,8 @@
 @mixin size($a, $border: false) {
-  width: $a;
-  height: $a;
+  width: #{$a}px;
+  height: #{$a}px;
   @if $border {
-    border-radius: $border;
+    border-radius: #{$border}px;
   }
 }
 
@@ -50,13 +50,13 @@
 }
 
 @mixin media($size) {
-  @media screen and (max-width: $size) {
+  @media screen and (max-width: #{$size}px) {
     @content;
   }
 }
 
 @mixin media-min($size) {
-  @media screen and (min-width: $size) {
+  @media screen and (min-width: #{$size}px) {
     @content;
   }
 }

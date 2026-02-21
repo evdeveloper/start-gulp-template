@@ -1,6 +1,7 @@
 let uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     sourcemaps = require('gulp-sourcemaps'),
+    esbuild = require('gulp-esbuild'),
     scriptsPATH = {
         "input": "./dev/static/js/",
         "output": "./build/static/js/"
@@ -40,12 +41,14 @@ module.exports = function () {
     });
 
     $.gulp.task('js:build-min', () => {
-        return $.gulp.src([scriptsPATH.input + '*.js',
-            '!' + scriptsPATH.input + 'libs.min.js'])
-            .pipe(sourcemaps.init())
-            .pipe(concat('main.min.js'))
-            .pipe(uglify())
-            .pipe(sourcemaps.write('.'))
+        return $.gulp.src(scriptsPATH.input + 'main.js')
+            .pipe(esbuild({
+                outfile: 'main.min.js',
+                bundle: true,
+                minify: true,
+                sourcemap: true,
+                target: ['es2015']
+            }))
             .pipe($.gulp.dest(scriptsPATH.output))
     });
 };

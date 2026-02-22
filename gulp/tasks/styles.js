@@ -1,10 +1,14 @@
 let plumber = require('gulp-plumber'),
-scss = require('gulp-sass'),
+gulpSass = require('gulp-sass'),
+sass = require('sass'),
 autoprefixer = require('gulp-autoprefixer'),
 csso = require('gulp-csso'),
-csscomb = require('gulp-csscomb'),
 sourcemaps = require('gulp-sourcemaps'),
 rename = require('gulp-rename'),
+scss = gulpSass(sass),
+scssOptions = {
+  silenceDeprecations: ['import', 'legacy-js-api', 'if-function']
+},
 stylesPATH = {
   "input": "./dev/static/styles/",
   "output": "./build/static/css/"
@@ -15,7 +19,7 @@ module.exports = function () {
     return $.gulp.src(stylesPATH.input + 'styles.scss')
       .pipe(plumber())
       .pipe(sourcemaps.init())
-      .pipe(scss())
+      .pipe(scss(scssOptions))
       .pipe(autoprefixer({
         overrideBrowserslist: ['last 3 version']
       }))
@@ -26,20 +30,18 @@ module.exports = function () {
   });
   $.gulp.task('styles:build', () => {
     return $.gulp.src(stylesPATH.input + 'styles.scss')
-      .pipe(scss())
+      .pipe(scss(scssOptions))
       .pipe(autoprefixer({
         overrideBrowserslist: ['last 3 version']
       }))
-      .pipe(csscomb())
       .pipe($.gulp.dest(stylesPATH.output))
   });
   $.gulp.task('styles:build-min', () => {
     return $.gulp.src(stylesPATH.input + 'styles.scss')
-      .pipe(scss())
+      .pipe(scss(scssOptions))
       .pipe(autoprefixer({
         overrideBrowserslist: ['last 3 version']
       }))
-      .pipe(csscomb())
       .pipe(csso())
       .pipe(rename('styles.min.css'))
       .pipe($.gulp.dest(stylesPATH.output))

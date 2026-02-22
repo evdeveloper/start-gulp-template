@@ -20,7 +20,6 @@ $.gulp.task('dev', $.gulp.series(
         'fonts',
         'styles:dev',
         'img:dev',
-        'libsJS:dev',
         'js:dev',
         'svg'
     )
@@ -33,7 +32,6 @@ $.gulp.task('build', $.gulp.series(
         'fonts',
         'styles:build-min',
         'img:build',
-        'libsJS:build',
         'js:build-min',
         'svg'
     )

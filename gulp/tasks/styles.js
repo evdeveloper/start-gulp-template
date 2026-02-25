@@ -17,7 +17,12 @@ stylesPATH = {
 module.exports = function () {
   $.gulp.task('styles:dev', () => {
     return $.gulp.src(stylesPATH.input + 'styles.scss')
-      .pipe(plumber())
+      .pipe(plumber({
+        errorHandler: function(err) {
+          console.log(err.message);
+          this.emit('end');
+        }
+      }))
       .pipe(sourcemaps.init())
       .pipe(scss(scssOptions))
       .pipe(autoprefixer({
